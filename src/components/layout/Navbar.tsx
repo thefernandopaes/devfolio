@@ -1,7 +1,7 @@
 
 import { Link } from "react-router-dom";
 import { User } from "lucide-react";
-import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { 
   DropdownMenu, 
@@ -10,12 +10,18 @@ import {
   DropdownMenuSeparator,  
   DropdownMenuTrigger 
 } from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/contexts/AuthContext";
 
 interface NavbarProps {
   isAuthenticated?: boolean;
 }
 
 export function Navbar({ isAuthenticated = false }: NavbarProps) {
+  const { user, signOut } = useAuth();
+  
+  // Use the prop or check for user
+  const isLoggedIn = isAuthenticated || !!user;
+
   return (
     <header className="border-b border-border bg-background py-4 px-6">
       <div className="container flex items-center justify-between">
@@ -24,7 +30,7 @@ export function Navbar({ isAuthenticated = false }: NavbarProps) {
         </Link>
 
         <nav className="hidden md:flex items-center space-x-6">
-          {isAuthenticated ? (
+          {isLoggedIn ? (
             <>
               <Link to="/dashboard" className="text-primary hover:text-white/80 transition-colors">
                 Dashboard
@@ -57,15 +63,22 @@ export function Navbar({ isAuthenticated = false }: NavbarProps) {
           )}
         </nav>
 
-        {isAuthenticated ? (
+        {isLoggedIn ? (
           <div className="flex items-center gap-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="icon" className="relative rounded-full">
                   <Avatar className="h-8 w-8">
-                    <AvatarFallback className="bg-secondary text-primary text-xs">
-                      <User size={14} />
-                    </AvatarFallback>
+                    {user?.user_metadata?.avatar_url ? (
+                      <AvatarImage 
+                        src={user.user_metadata.avatar_url} 
+                        alt={user.user_metadata.full_name || user.email || 'User'} 
+                      />
+                    ) : (
+                      <AvatarFallback className="bg-secondary text-primary text-xs">
+                        <User size={14} />
+                      </AvatarFallback>
+                    )}
                   </Avatar>
                 </Button>
               </DropdownMenuTrigger>
@@ -77,8 +90,8 @@ export function Navbar({ isAuthenticated = false }: NavbarProps) {
                   <Link to="/settings">Settings</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem asChild>
-                  <Link to="/signout">Sign Out</Link>
+                <DropdownMenuItem onClick={() => signOut()}>
+                  Sign Out
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

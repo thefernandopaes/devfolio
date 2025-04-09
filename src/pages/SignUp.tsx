@@ -4,25 +4,50 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Github } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import { useState } from "react";
+import { useAuth } from "@/contexts/AuthContext";
 
 export default function SignUp() {
   const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const { signUp, signInWithGithub, user, loading } = useAuth();
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real app, implement registration logic here
-    console.log("Sign up with:", { fullName, email, password, confirmPassword });
+    setError(null);
+    
+    if (password !== confirmPassword) {
+      setError("Passwords do not match");
+      return;
+    }
+    
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters");
+      return;
+    }
+    
+    await signUp(email, password, fullName);
   };
 
   const handleGitHubSignUp = () => {
-    // In a real app, implement GitHub OAuth logic here
-    console.log("Sign up with GitHub");
+    signInWithGithub();
   };
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center min-h-screen">
+        <div className="animate-pulse text-primary">Loading...</div>
+      </div>
+    );
+  }
+
+  if (user) {
+    return <Navigate to="/dashboard" replace />;
+  }
 
   return (
     <Layout>
@@ -35,6 +60,12 @@ export default function SignUp() {
                 Join DevFolio+ and build your perfect portfolio
               </p>
             </div>
+
+            {error && (
+              <div className="bg-destructive/20 text-destructive text-sm p-3 rounded mb-4">
+                {error}
+              </div>
+            )}
 
             <form onSubmit={handleSignUp} className="space-y-4">
               <div className="space-y-2">
