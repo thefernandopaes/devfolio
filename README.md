@@ -1,73 +1,88 @@
-# Welcome to your Lovable project
+# DevFolio – Build Your Developer Portfolio in Minutes
 
-## Project info
+DevFolio is a no-code platform that enables developers to quickly create a professional portfolio without wasting time on design. Import your GitHub projects, connect your LinkedIn, and export a beautiful, ATS-optimized portfolio in minutes.
 
-**URL**: https://lovable.dev/projects/8bc2fe89-151d-472f-98b5-1966ad7ae707
+## 📋 Table of Contents
 
-## How can I edit this code?
+- [Overview](#overview)
+- [Tech Stack](#tech-stack)
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Project Structure](#project-structure)
+- [Authentication](#authentication)
+- [Contributing](#contributing)
+- [License](#license)
 
-There are several ways of editing your application.
+## 🔍 Overview
 
-**Use Lovable**
+DevFolio helps developers create professional portfolios using pre-built templates. The focus is on saving time and allowing you to showcase your best work and skills without worrying about design.
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/8bc2fe89-151d-472f-98b5-1966ad7ae707) and start prompting.
+## 💻 Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+This project is built with the following technologies:
 
-**Use your preferred IDE**
+- **Vite** – Build tool and dev server  
+- **React** – UI library  
+- **TypeScript** – Strongly typed language  
+- **React Router** – Routing  
+- **Tailwind CSS** – Utility-first CSS framework  
+- **shadcn/ui** – UI component library  
+- **Lucide React** – Icon set  
+- **Supabase** – Backend as a Service (authentication, database)  
+- **TanStack Query** – State management and caching  
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+## ✨ Features
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+### Key features:
 
-Follow these steps:
+- **Quick Portfolio Creation**: Choose from ATS-optimized templates and build your portfolio in minutes with an intuitive interface.
+- **GitHub and LinkedIn Integration**: Automatically import your projects, skills, and experience from GitHub and LinkedIn.
+- **Developer-Focused Templates**: Select from Terminal-style, GitHub README, or LinkedIn-inspired layouts tailored for developers.
+- **One-Click PDF Export**: Export your portfolio as a polished, ATS-friendly PDF in just one click.
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+🔐 Authentication
+DevFolio uses Supabase for authentication. Supported methods include:
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+Email/password login
 
-# Step 3: Install the necessary dependencies.
-npm i
+User registration
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+GitHub OAuth
+
+Session management
+
+👥 Contributing
+Contributions are welcome! To contribute:
+
+Fork the repository
+
+Create a new branch (git checkout -b feature/new-feature)
+
+Commit your changes (git commit -m 'Add new feature')
+
+Push to your branch (git push origin feature/new-feature)
+
+Open a Pull Request
+
+📄 License
+This project is licensed under the MIT License.
+
+## 🚀 Installation
+
+```bash
+# Clone the repository
+git clone <REPOSITORY_URL>
+
+# Navigate into the project directory
+cd devfolio
+
+# Install dependencies
+npm install
+
+# Start the development server
 npm run dev
-```
 
-**Edit a file directly in GitHub**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
 
-**Use GitHub Codespaces**
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
-
-## What technologies are used for this project?
-
-This project is built with:
-
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
-
-## How can I deploy this project?
-
-Simply open [Lovable](https://lovable.dev/projects/8bc2fe89-151d-472f-98b5-1966ad7ae707) and click on Share -> Publish.
-
-## Can I connect a custom domain to my Lovable project?
-
-Yes it is!
-
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
-
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
